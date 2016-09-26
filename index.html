@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SpotiRemote</title>
+  </head>
+  <body>
+  	<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+  	<button onclick="emitPrev();">prev</button>
+  	<button onclick="emitPlayPause();">play/pause</button>
+  	<button onclick="emitNext();">next</button>
+    <input id="form1" />
+    <button onclick="emitSearchplay();">search n play</button>
+
+    <script>
+      var socket = io();
+
+      function emitPrev() { socket.emit('internal_prev'); }
+      function emitPlayPause() { socket.emit('internal_playpause'); }
+      function emitNext() { socket.emit('internal_next'); }
+      function emitSearchplay() {
+        socket.emit('internal_searchplay', $('#form1').val());
+        $('#form1').val('');
+        return false;
+      }
+    </script>
+  </body>
+</html>
