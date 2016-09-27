@@ -2,6 +2,8 @@ var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var port = process.env.PORT || 1337;
+
 app.post('/api/next', function (req, res) {
   io.emit('next');
   res.sendStatus(200);
@@ -31,4 +33,4 @@ app.post('/api/setvolume', function (req, res) {
   res.sendStatus(200);
 });
 
-http.listen(1337);
+http.listen(port);
