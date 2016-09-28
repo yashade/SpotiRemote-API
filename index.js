@@ -33,4 +33,11 @@ app.post('/api/setvolume', function (req, res) {
   res.sendStatus(200);
 });
 
+app.post('/api/share', function (req, res) {
+  io.emit('share', {
+    track: req.query.track
+  });
+  res.sendStatus(200);
+});
+
 http.listen(port);
