@@ -40,4 +40,29 @@ app.post('/api/share', function (req, res) {
   res.sendStatus(200);
 });
 
+// metadata
+var track;
+var artist;
+var album;
+var albumcover;
+
+app.post('/api/metadata', function (req, res) {
+  track = req.query.track;
+  artist = req.query.artist;
+  album = req.query.album;
+  albumcover = req.query.albumcover;
+
+  io.emit('metadatachanged');
+  res.sendStatus(200);
+});
+
+app.get('/api/metadata', function (req, res) {
+  res.json({
+    track: track,
+    artist: artist,
+    album: album,
+    albumcover: albumcover
+  });
+});
+
 http.listen(port);
