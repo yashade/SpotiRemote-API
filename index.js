@@ -12,6 +12,7 @@ app.post('/api/next', function (req, res) {
 
 app.post('/api/playpause', function (req, res) {
   io.emit('playpause');
+  io.emit('metadatachanged');
   res.sendStatus(200);
 });
 
